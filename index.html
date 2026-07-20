@@ -1,41 +1,1332 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
 <title>AI Based Color Sorting System</title>
+
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:Arial,sans-serif;background:linear-gradient(135deg,#0b1f3a,#1565c0);height:100vh;display:flex;justify-content:center;align-items:center;color:#fff;overflow:hidden}
-.card{background:rgba(255,255,255,.12);backdrop-filter:blur(12px);padding:50px;border-radius:20px;text-align:center;max-width:800px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-h1{font-size:3rem;margin-bottom:15px}
-h3{font-weight:normal;color:#dbe9ff;margin-bottom:20px}
-p{font-size:1.1rem;line-height:1.7;margin-bottom:35px}
-.btn{display:inline-block;padding:15px 35px;background:#ff9800;color:#fff;text-decoration:none;border-radius:8px;font-size:18px;font-weight:bold;transition:.3s}
-.btn:hover{background:#fb8c00;transform:translateY(-3px)}
-footer{position:absolute;bottom:15px;width:100%;text-align:center;color:#d0d0d0;font-size:14px}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+font-family:Arial,Helvetica,sans-serif;
+}
+
+body{
+background:#f5f9fc;
+color:#1f2937;
+line-height:1.6;
+}
+
+header{
+
+background:linear-gradient(135deg,#0284c7,#075985);
+padding:60px 20px;
+text-align:center;
+color:white;
+
+}
+
+.logo{
+
+width:140px;
+height:140px;
+margin:auto;
+background:white;
+border-radius:15px;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+box-shadow:0 10px 30px rgba(0,0,0,.2);
+
+}
+
+.logo img{
+
+width:100%;
+height:100%;
+object-fit:contain;
+
+}
+
+header h1{
+
+margin-top:25px;
+font-size:42px;
+
+}
+
+header p{
+
+margin-top:15px;
+font-size:18px;
+max-width:900px;
+margin-left:auto;
+margin-right:auto;
+color:#dbeafe;
+
+}
+
+nav{
+
+position:sticky;
+top:0;
+background:white;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:22px;
+padding:18px;
+box-shadow:0 5px 15px rgba(0,0,0,.08);
+z-index:999;
+
+}
+
+nav a{
+
+text-decoration:none;
+font-weight:bold;
+color:#075985;
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:#0284c7;
+
+}
+
+.container{
+
+width:92%;
+max-width:1200px;
+margin:auto;
+padding:40px 0;
+
+}
+
+.section{
+
+background:white;
+padding:30px;
+margin-bottom:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+animation:fadeUp .8s;
+
+}
+
+.section h2{
+
+color:#075985;
+margin-bottom:18px;
+padding-bottom:10px;
+border-bottom:2px solid #dbeafe;
+
+}
+
+.project-box{
+
+background:#eef8ff;
+padding:20px;
+border-left:6px solid #0284c7;
+border-radius:10px;
+
+}
+
+.project-box p{
+
+margin:8px 0;
+
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+margin-top:25px;
+
+}
+
+.card{
+
+background:#f8fafc;
+border:1px solid #cbd5e1;
+border-radius:12px;
+padding:20px;
+text-align:center;
+transition:.3s;
+
+}
+
+.card:hover{
+
+transform:translateY(-6px);
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+}
+
+.card img{
+
+width:100%;
+height:170px;
+object-fit:contain;
+margin-bottom:15px;
+
+}
+
+.card h3{
+
+color:#075985;
+margin-bottom:10px;
+
+}
+
+.card p{
+
+font-size:15px;
+color:#475569;
+
+}
+
+.table-responsive{
+
+overflow-x:auto;
+
+}
+
+table{
+
+width:100%;
+border-collapse:collapse;
+margin-top:20px;
+
+}
+
+table th{
+
+background:#075985;
+color:white;
+padding:14px;
+
+}
+
+table td{
+
+padding:12px;
+border:1px solid #d1d5db;
+
+}
+
+table tr:nth-child(even){
+
+background:#eff6ff;
+
+}
+
+.note{
+
+background:#fff7cc;
+padding:18px;
+border-left:5px solid orange;
+margin-top:20px;
+border-radius:8px;
+
+}
+
+.warning{
+
+background:#fee2e2;
+padding:18px;
+border-left:5px solid red;
+margin-top:20px;
+border-radius:8px;
+
+}
+
+.success{
+
+background:#dcfce7;
+padding:18px;
+border-left:5px solid green;
+margin-top:20px;
+border-radius:8px;
+
+}
+
+.info{
+
+background:#e0f2fe;
+padding:18px;
+border-left:5px solid #0284c7;
+margin-top:20px;
+border-radius:8px;
+
+}
+
+.code-header{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:14px;
+background:#1e293b;
+color:white;
+border-radius:10px 10px 0 0;
+
+}
+
+.copy-btn{
+
+background:#0284c7;
+border:none;
+color:white;
+padding:10px 18px;
+border-radius:6px;
+cursor:pointer;
+font-weight:bold;
+
+}
+
+.copy-btn:hover{
+
+background:#075985;
+
+}
+
+pre{
+
+background:#0f172a;
+color:#d1fae5;
+padding:20px;
+overflow:auto;
+border-radius:0 0 10px 10px;
+font-size:14px;
+line-height:1.6;
+
+}
+
+footer{
+
+background:#0f172a;
+color:white;
+padding:25px;
+text-align:center;
+margin-top:40px;
+
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(30px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+@media(max-width:900px){
+
+.grid{
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+}
+
+@media(max-width:650px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+header h1{
+
+font-size:32px;
+
+}
+
+nav{
+
+gap:12px;
+font-size:14px;
+
+}
+
+}
+
 </style>
+
 </head>
+
 <body>
 
-<div class="card">
-<h1>AI BASED COLOR SORTING SYSTEM</h1>
+<header>
 
-<h3>Raspberry Pi 4 • OpenCV • Dobot Magician</h3>
+<div class="logo">
+
+<img src="images/logo.png"
+alt="Logo">
+
+</div>
+
+<h1>AI Based Color Sorting System</h1>
 
 <p>
-An AI-powered robotic automation system that detects object colors using
-Computer Vision and automatically sorts them using a Dobot Magician robot,
-USB camera, conveyor belt and proxy sensor.
+
+AI-powered automatic color sorting system using
+Raspberry Pi 4,
+OpenCV,
+USB Camera,
+Conveyor Belt,
+Proxy Sensor,
+Relay Module
+and
+Dobot Magician Robot.
+
 </p>
 
-<a class="btn" href="project.html">VIEW PROJECT</a>
+</header>
+
+<nav>
+
+<a href="#details">Project Details</a>
+
+<a href="#components">Components</a>
+
+<a href="#software">Software</a>
+
+<a href="#connections">Connections</a>
+
+<a href="#circuit">Circuit</a>
+
+<a href="#working">Working</a>
+
+<a href="#calibration">Calibration</a>
+
+<a href="#python">Python Code</a>
+
+<a href="#installation">Installation</a>
+
+<a href="#gallery">Gallery</a>
+
+<a href="#applications">Applications</a>
+
+<a href="#troubleshooting">Troubleshooting</a>
+
+</nav>
+
+<div class="container">
+
+<section
+class="section"
+id="details">
+
+<h2>Project Details</h2>
+
+<div class="project-box">
+
+<p><b>Project Name :</b> AI Based Color Sorting System</p>
+
+<p><b>Main Controller :</b> Raspberry Pi 4 Model B</p>
+
+<p><b>Programming Language :</b> Python 3</p>
+
+<p><b>Vision :</b> USB HD Camera + OpenCV</p>
+
+<p><b>Robot :</b> Dobot Magician</p>
+
+<p><b>Conveyor :</b> DC Conveyor Belt</p>
+
+<p><b>Sensor :</b> Infrared Proxy Sensor</p>
+
+<p><b>Motor Driver :</b> Relay + PWM Controller</p>
+
+<p><b>Purpose :</b>
+
+Automatically detect object color,
+stop the conveyor,
+pick the object using Dobot,
+and place it into the correct color bin.
+
+</p>
+
+</div>
+
+</section>
+<!-- ===========================
+Required Components
+=========================== -->
+
+<section class="section" id="components">
+
+<h2>Required Components</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="images/raspberrypi4.png" alt="Raspberry Pi 4">
+<h3>Raspberry Pi 4</h3>
+<p>Main controller that performs image processing and controls the complete system.</p>
+</div>
+
+<div class="card">
+<img src="images/dobot.png" alt="Dobot">
+<h3>Dobot Magician</h3>
+<p>Industrial robotic arm used for automatic pick and place operation.</p>
+</div>
+
+<div class="card">
+<img src="images/camera.png" alt="USB Camera">
+<h3>USB Camera</h3>
+<p>Captures images of the object for OpenCV color detection.</p>
+</div>
+
+<div class="card">
+<img src="images/conveyor.png" alt="Conveyor">
+<h3>Conveyor Belt</h3>
+<p>Moves the object automatically toward the robot.</p>
+</div>
+
+<div class="card">
+<img src="images/proxysensor.png" alt="Proxy Sensor">
+<h3>Proxy Sensor</h3>
+<p>Detects object arrival and stops the conveyor.</p>
+</div>
+
+<div class="card">
+<img src="images/relay.png" alt="Relay">
+<h3>Relay Module</h3>
+<p>Controls ON/OFF operation of the conveyor motor.</p>
+</div>
+
+<div class="card">
+<img src="images/pwm.png" alt="PWM">
+<h3>PWM Controller</h3>
+<p>Controls conveyor speed.</p>
+</div>
+
+<div class="card">
+<img src="images/powersupply.png" alt="Power Supply">
+<h3>Power Supply</h3>
+<p>Provides stable power to Raspberry Pi and conveyor.</p>
+</div>
+
+<div class="card">
+<img src="images/bin.png" alt="Sorting Bin">
+<h3>Sorting Bins</h3>
+<p>Separate bins for Red, Blue and Yellow objects.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ===========================
+Software Requirements
+=========================== -->
+
+<section class="section" id="software">
+
+<h2>Software Requirements</h2>
+
+<div class="table-responsive">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Software</th>
+
+<th>Version</th>
+
+<th>Purpose</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+<td>Raspberry Pi OS</td>
+<td>Latest</td>
+<td>Operating System</td>
+</tr>
+
+<tr>
+<td>Python 3</td>
+<td>3.x</td>
+<td>Main Programming Language</td>
+</tr>
+
+<tr>
+<td>OpenCV</td>
+<td>Latest</td>
+<td>Computer Vision</td>
+</tr>
+
+<tr>
+<td>NumPy</td>
+<td>Latest</td>
+<td>Array Processing</td>
+</tr>
+
+<tr>
+<td>PySerial</td>
+<td>Latest</td>
+<td>Dobot Communication</td>
+</tr>
+
+<tr>
+<td>PyDobot</td>
+<td>Latest</td>
+<td>Dobot Control Library</td>
+</tr>
+
+<tr>
+<td>RPi.GPIO</td>
+<td>Latest</td>
+<td>GPIO Control</td>
+</tr>
+
+<tr>
+<td>VS Code</td>
+<td>Latest</td>
+<td>Python Development</td>
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="note">
+
+<b>Note :</b>
+
+Install all required Python libraries before running the project.
+
+</div>
+
+</section>
+
+<!-- ===========================
+Hardware Connections
+=========================== -->
+
+<section class="section" id="connections">
+
+<h2>Hardware Connections</h2>
+
+<div class="table-responsive">
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>Device</th>
+
+<th>Connection</th>
+
+<th>Purpose</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+<tr>
+
+<td>USB Camera</td>
+
+<td>USB Port</td>
+
+<td>Image Capture</td>
+
+</tr>
+
+<tr>
+
+<td>Dobot Magician</td>
+
+<td>USB Port</td>
+
+<td>Robot Control</td>
+
+</tr>
+
+<tr>
+
+<td>Relay Module</td>
+
+<td>GPIO17</td>
+
+<td>Conveyor ON/OFF</td>
+
+</tr>
+
+<tr>
+
+<td>Proxy Sensor</td>
+
+<td>GPIO23</td>
+
+<td>Object Detection</td>
+
+</tr>
+
+<tr>
+
+<td>PWM Controller</td>
+
+<td>Motor Driver</td>
+
+<td>Speed Control</td>
+
+</tr>
+
+</tbody>
+
+</table>
+
+</div>
+
+<div class="warning">
+
+Always provide a common GND between Raspberry Pi and external modules.
+
+</div>
+
+</section>
+
+<!-- ===========================
+Circuit Diagram
+=========================== -->
+
+<section class="section" id="circuit">
+
+<h2>Circuit Diagram</h2>
+
+<p>
+
+Add your complete wiring diagram below.
+
+</p>
+
+<div class="card">
+
+<img src="images/circuit.png"
+
+style="width:100%;border-radius:10px;">
+
+<h3 style="margin-top:20px;">
+
+AI Based Color Sorting System Circuit Diagram
+
+</h3>
+
+</div>
+
+</section>
+<!-- ==========================================
+WORKING PRINCIPLE
+========================================== -->
+
+<section class="section" id="working">
+
+<h2>Working Principle</h2>
+
+<p>
+
+The AI Based Color Sorting System automates the identification
+and sorting of colored objects using Computer Vision and a
+robotic arm.
+
+The Raspberry Pi continuously captures images from the USB
+camera.
+
+Whenever the proximity sensor detects an object, the conveyor
+stops automatically.
+
+The captured image is processed using OpenCV.
+
+The detected object color determines the destination bin.
+
+The Raspberry Pi sends the corresponding coordinates to the
+Dobot Magician.
+
+The robot picks the object and places it in the correct
+sorting bin.
+
+Finally, the conveyor starts again and waits for the next
+object.
+
+</p>
+
+<div class="success">
+
+<b>Workflow</b>
+
+<br><br>
+
+1. Conveyor Starts
+
+<br>
+
+↓
+
+<br>
+
+2. Object reaches Sensor
+
+<br>
+
+↓
+
+<br>
+
+3. Conveyor Stops
+
+<br>
+
+↓
+
+<br>
+
+4. Camera Captures Image
+
+<br>
+
+↓
+
+<br>
+
+5. OpenCV Detects Color
+
+<br>
+
+↓
+
+<br>
+
+6. Raspberry Pi Calculates Bin
+
+<br>
+
+↓
+
+<br>
+
+7. Dobot Picks Object
+
+<br>
+
+↓
+
+<br>
+
+8. Dobot Places Object
+
+<br>
+
+↓
+
+<br>
+
+9. Conveyor Restarts
+
+</div>
+
+</section>
+
+<!-- ==========================================
+COLOR DETECTION
+========================================== -->
+
+<section class="section">
+
+<h2>Color Detection Algorithm</h2>
+
+<p>
+
+The system uses OpenCV to convert the captured image from
+BGR to HSV color space.
+
+HSV makes color detection more reliable under different
+lighting conditions.
+
+Threshold values are created for each color.
+
+Contours are detected.
+
+The largest contour is selected.
+
+The center of the contour is calculated.
+
+The object color is identified and sent to the robot.
+
+</p>
+
+<div class="info">
+
+<b>Detected Colors</b>
+
+<ul style="margin-top:15px;margin-left:25px;">
+
+<li>Red</li>
+
+<li>Blue</li>
+
+<li>Yellow</li>
+
+<li>Green (Optional)</li>
+
+</ul>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+ROBOT CALIBRATION
+========================================== -->
+
+<section class="section" id="calibration">
+
+<h2>Robot Calibration</h2>
+
+<p>
+
+Before operating the system,
+the Dobot Magician must be calibrated.
+
+Calibration ensures accurate movement.
+
+Home Position is set first.
+
+Pickup coordinates are stored.
+
+Sorting bin coordinates are then stored.
+
+These coordinates are used by the Python program during
+automatic sorting.
+
+</p>
+
+<div class="table-responsive">
+
+<table>
+
+<tr>
+
+<th>Position</th>
+
+<th>X</th>
+
+<th>Y</th>
+
+<th>Z</th>
+
+</tr>
+
+<tr>
+
+<td>Pickup</td>
+
+<td>XXX</td>
+
+<td>XXX</td>
+
+<td>XXX</td>
+
+</tr>
+
+<tr>
+
+<td>Red Bin</td>
+
+<td>XXX</td>
+
+<td>XXX</td>
+
+<td>XXX</td>
+
+</tr>
+
+<tr>
+
+<td>Blue Bin</td>
+
+<td>XXX</td>
+
+<td>XXX</td>
+
+<td>XXX</td>
+
+</tr>
+
+<tr>
+
+<td>Yellow Bin</td>
+
+<td>XXX</td>
+
+<td>XXX</td>
+
+<td>XXX</td>
+
+</tr>
+
+</table>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+CONVEYOR OPERATION
+========================================== -->
+
+<section class="section">
+
+<h2>Conveyor Operation</h2>
+
+<p>
+
+The conveyor runs continuously.
+
+When the IR proximity sensor detects an object,
+GPIO output turns OFF the relay.
+
+The conveyor immediately stops.
+
+After sorting is completed,
+the relay turns ON again and the conveyor continues.
+
+PWM can be adjusted to control conveyor speed.
+
+</p>
+
+</section>
+
+<!-- ==========================================
+PYTHON CODE
+========================================== -->
+
+<section class="section" id="python">
+
+<h2>Python Program</h2>
+
+<div class="code-header">
+
+<h3>Main Python Code</h3>
+
+<button class="copy-btn"
+onclick="copyCode()">
+
+Copy Code
+
+</button>
+
+</div>
+
+<pre id="pythonCode">
+
+# Insert your complete Python source code here
+
+# Example
+
+import cv2
+
+import numpy as np
+
+print("AI Based Color Sorting System")
+
+</pre>
+
+</section>
+<!-- ==========================================
+INSTALLATION
+========================================== -->
+
+<section class="section" id="installation">
+
+<h2>Installation</h2>
+
+<ol style="margin-left:25px;line-height:2;">
+
+<li>Install Raspberry Pi OS.</li>
+
+<li>Update the operating system.</li>
+
+<li>Install Python 3.</li>
+
+<li>Install OpenCV.</li>
+
+<li>Install NumPy.</li>
+
+<li>Install PySerial.</li>
+
+<li>Install PyDobot.</li>
+
+<li>Install RPi.GPIO.</li>
+
+<li>Connect the USB Camera.</li>
+
+<li>Connect the Dobot Magician.</li>
+
+<li>Connect Relay Module and Proxy Sensor.</li>
+
+<li>Run the Python program.</li>
+
+</ol>
+
+<div class="success">
+
+<b>System Ready!</b>
+
+The AI Based Color Sorting System is now ready for automatic operation.
+
+</div>
+
+</section>
+
+<!-- ==========================================
+APPLICATIONS
+========================================== -->
+
+<section class="section" id="applications">
+
+<h2>Applications</h2>
+
+<div class="grid">
+
+<div class="card">
+<h3>Manufacturing</h3>
+<p>Automatic sorting of products in production lines.</p>
+</div>
+
+<div class="card">
+<h3>Packaging</h3>
+<p>Sorting products before packaging.</p>
+</div>
+
+<div class="card">
+<h3>Food Industry</h3>
+<p>Sorting fruits and vegetables based on color.</p>
+</div>
+
+<div class="card">
+<h3>Pharmaceutical</h3>
+<p>Medicine bottle identification and sorting.</p>
+</div>
+
+<div class="card">
+<h3>Recycling</h3>
+<p>Automatic waste segregation using vision.</p>
+</div>
+
+<div class="card">
+<h3>Educational Labs</h3>
+<p>Learning Computer Vision and Industrial Automation.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+ADVANTAGES
+========================================== -->
+
+<section class="section">
+
+<h2>Advantages</h2>
+
+<ul style="margin-left:25px;line-height:2;">
+
+<li>Fast object detection</li>
+
+<li>High sorting accuracy</li>
+
+<li>Low human effort</li>
+
+<li>Industrial automation ready</li>
+
+<li>Expandable for AI models</li>
+
+<li>Real-time image processing</li>
+
+<li>Supports multiple object colors</li>
+
+<li>Easy maintenance</li>
+
+</ul>
+
+</section>
+
+<!-- ==========================================
+GALLERY
+========================================== -->
+
+<section class="section" id="gallery">
+
+<h2>Project Gallery</h2>
+
+<div class="grid">
+
+<div class="card">
+<img src="images/setup.jpg" alt="Setup">
+<h3>Complete Setup</h3>
+</div>
+
+<div class="card">
+<img src="images/dobot_working.jpg" alt="Robot">
+<h3>Dobot Working</h3>
+</div>
+
+<div class="card">
+<img src="images/conveyor_working.jpg" alt="Conveyor">
+<h3>Conveyor Belt</h3>
+</div>
+
+<div class="card">
+<img src="images/color_detection.jpg" alt="Color Detection">
+<h3>Color Detection</h3>
+</div>
+
+<div class="card">
+<img src="images/bin.jpg" alt="Sorting Bin">
+<h3>Sorting Bins</h3>
+</div>
+
+<div class="card">
+<img src="images/final_output.jpg" alt="Output">
+<h3>Final Output</h3>
+</div>
+
+</div>
+
+</section>
+
+<!-- ==========================================
+TROUBLESHOOTING
+========================================== -->
+
+<section class="section" id="troubleshooting">
+
+<h2>Troubleshooting</h2>
+
+<div class="warning">
+
+<b>Camera Not Working</b>
+
+<ul style="margin-left:20px;margin-top:10px;">
+
+<li>Check USB cable.</li>
+
+<li>Verify camera permissions.</li>
+
+<li>Restart Raspberry Pi.</li>
+
+</ul>
+
+</div>
+
+<div class="warning">
+
+<b>Dobot Not Responding</b>
+
+<ul style="margin-left:20px;margin-top:10px;">
+
+<li>Reconnect USB cable.</li>
+
+<li>Check COM Port.</li>
+
+<li>Restart Dobot Studio.</li>
+
+</ul>
+
+</div>
+
+<div class="warning">
+
+<b>Wrong Color Detection</b>
+
+<ul style="margin-left:20px;margin-top:10px;">
+
+<li>Adjust HSV values.</li>
+
+<li>Improve lighting conditions.</li>
+
+<li>Clean camera lens.</li>
+
+</ul>
+
+</div>
+
+</section>
 
 </div>
 
 <footer>
-© 2026 AI Based Color Sorting System
+
+<h3>AI Based Color Sorting System</h3>
+
+<p>
+
+Developed using Raspberry Pi 4, OpenCV, Python and Dobot Magician.
+
+</p>
+
+<p style="margin-top:10px;">
+
+&copy; 2026 AI Based Color Sorting System. All Rights Reserved.
+
+</p>
+
 </footer>
 
+<script>
+
+function copyCode(){
+
+const code=document.getElementById("pythonCode").innerText;
+
+navigator.clipboard.writeText(code);
+
+alert("Python code copied successfully!");
+
+}
+
+</script>
+
 </body>
+
 </html>
