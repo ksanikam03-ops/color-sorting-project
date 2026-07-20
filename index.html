@@ -637,6 +637,12 @@ Hardware Connections
 
 <h2>Hardware Connections</h2>
 
+<p>
+
+Complete all wiring before powering ON the system.
+
+</p>
+
 <div class="table-responsive">
 
 <table>
@@ -645,11 +651,9 @@ Hardware Connections
 
 <tr>
 
-<th>Device</th>
-
 <th>Connection</th>
 
-<th>Purpose</th>
+<th>Details</th>
 
 </tr>
 
@@ -658,53 +662,58 @@ Hardware Connections
 <tbody>
 
 <tr>
+<td>Relay VCC</td>
+<td>Raspberry Pi 3.3V</td>
+</tr>
 
+<tr>
+<td>Relay GND</td>
+<td>Raspberry Pi GND</td>
+</tr>
+
+<tr>
+<td>Relay Signal</td>
+<td>Raspberry Pi GPIO17</td>
+</tr>
+
+<tr>
+<td>Proxy Sensor Signal</td>
+<td>Raspberry Pi GPIO23</td>
+</tr>
+
+<tr>
+<td>Proxy Sensor VCC</td>
+<td>Raspberry Pi 5V</td>
+</tr>
+
+<tr>
+<td>Proxy Sensor GND</td>
+<td>Raspberry Pi GND</td>
+</tr>
+
+<tr>
 <td>USB Camera</td>
-
-<td>USB Port</td>
-
-<td>Image Capture</td>
-
+<td>Raspberry Pi USB Port</td>
 </tr>
 
 <tr>
-
-<td>Dobot Magician</td>
-
-<td>USB Port</td>
-
-<td>Robot Control</td>
-
+<td>Dobot Magician USB</td>
+<td>Raspberry Pi USB Port</td>
 </tr>
 
 <tr>
-
-<td>Relay Module</td>
-
-<td>GPIO17</td>
-
-<td>Conveyor ON/OFF</td>
-
+<td>Relay COM</td>
+<td>PWM Controller Power (+)</td>
 </tr>
 
 <tr>
-
-<td>Proxy Sensor</td>
-
-<td>GPIO23</td>
-
-<td>Object Detection</td>
-
+<td>Relay NC</td>
+<td>12V Positive Supply</td>
 </tr>
 
 <tr>
-
-<td>PWM Controller</td>
-
-<td>Motor Driver</td>
-
-<td>Speed Control</td>
-
+<td>PWM Output</td>
+<td>DC Conveyor Motor</td>
 </tr>
 
 </tbody>
@@ -713,9 +722,23 @@ Hardware Connections
 
 </div>
 
-<div class="warning">
+<div class="note">
 
-Always provide a common GND between Raspberry Pi and external modules.
+<b>Important Notes</b>
+
+<ul style="margin-top:12px; margin-left:20px; line-height:1.8;">
+
+<li>Ensure all GND connections are common.</li>
+
+<li>Use a separate 12V power supply for the conveyor motor.</li>
+
+<li>Do not power the motor directly from the Raspberry Pi.</li>
+
+<li>Verify all wiring before switching ON the power.</li>
+
+<li>Check relay and PWM controller connections carefully to avoid damage.</li>
+
+</ul>
 
 </div>
 
